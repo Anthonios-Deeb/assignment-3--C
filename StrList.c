@@ -155,3 +155,94 @@ void StrList_removeAt(StrList* strList, int index){
   temp->next=temp->next->next;
   free(temp->next);
 }
+
+int StrList_isEqual(const StrList* strList1, const StrList* strList2){
+  node temp1=strList1->head;
+  node temp2=strList2->head;
+
+  while (temp1!=NULL&&temp2!=NULL){
+    if(strcmp(temp1->str,temp2->str)==0){
+      return 0;
+    }
+    temp1=temp1->next;
+    temp2=temp2->next;
+  }
+
+  return temp1==NULL&&temp2==NULL;
+}
+
+StrList* StrList_clone(const StrList* strList){
+  StrList * new_list= malloc(sizeof(StrList));
+  new_list->head=NULL;
+
+  node clone_temp=new_list->head;
+  node temp=strList->head;
+
+  while (temp!=NULL){
+    clone_temp->str = temp->str;
+    if(temp->next==NULL){
+      new_list->tail=clone_temp;
+    }
+    temp=temp->next;
+    clone_temp=clone_temp->next;
+  }
+  StrList_free(strList);
+  return new_list;
+}
+
+void StrList_reverse(StrList* strlist){
+  node head=strlist->head;
+  node tail=strlist->tail;
+
+  node start=head;
+  node end=tail;
+
+  while(strcmp(start->str,end->str)!=0||start->next->next!=NULL){
+    while (strcm(start->next->str,end->str)!=0||start->next->next!=NULL){
+      start=start->next;
+    }
+    end->next=start;
+    end=end->next;
+    start->next=NULL;
+    node start=head;
+  }
+  node temp=head;
+  strlist->head=strlist->tail;
+  strlist->tail=temp;
+}
+
+void findMinAndset(StrList* strlist,node start){
+  node min=start;
+  node temp=start->next;
+  
+  while(temp!=NULL){
+    if(strcmp(temp->str,min->str)<0){
+      min=temp;
+    }
+    temp=temp->next;
+  }
+
+  char * t=start->str;
+  start->str=min->str;
+  min->str=t;
+}
+
+void StrList_sort(StrList* strlist){
+  node start=strlist->head;
+
+  while (start!=NULL){
+    findMinAndset(strlist,start);
+    start=start->next;
+  }
+}
+
+int StrList_isSorted(StrList* strlist){
+  node temp=strlist;
+  while(temp->next!=NULL){
+    if(strcmp(temp->str,temp->next->str)!=-1){
+      return 0;
+    }
+    temp=temp->next;
+  }
+  return 1;
+}

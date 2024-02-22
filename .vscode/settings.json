@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "strlist.h": "c"
+  },
+  "makefile.launchConfigurations": [
+    {
+      "cwd": "/Users/anthoniosdeeb/Documents/Uni/תכנות מערכות 1/מטלות/assignment-3--C",
+      "binaryPath": "/Users/anthoniosdeeb/Documents/Uni/תכנות מערכות 1/מטלות/assignment-3--C/StrList",
+      "binaryArgs": []
+    }
+  ]
+}

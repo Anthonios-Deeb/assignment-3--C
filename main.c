@@ -1,11 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "StrList.h"
 
 int main(){
   StrList * strlist=StrList_alloc();
-
+  int count,i;
+  char str[100];
   while(1){
-    int x;
+    int x=0;
     scanf("%d",&x);
     switch (x){
     case 0:
@@ -13,55 +15,54 @@ int main(){
     break;
 
     case 1:
-      int i;
-      char * str;
-      scanf("%d",&i);
-      for(int j=0;j<i;j++){
-        scanf("%s",&str);
+
+      scanf("%d", &count);
+      for(int i=0;i < count;i++){
+        scanf("%s",str);
         StrList_insertLast(strlist,str);
       }
+
     break;
     
     case 2:
-      int i;
-      char * str;
-      scanf("%s",&str);
       scanf("%d",&i);
+      scanf("%s",str);
       StrList_insertAt(strlist,str,i);
     break;
 
     case 3:
-    StrList_print(strlist);
+      StrList_print(strlist);
+      printf("\n");
     break;
 
     case 4:
-      printf(StrList_size(strlist));
+      printf("%zu",StrList_size(strlist));
+      printf("\n");
     break;
 
     case 5:
-      int i;
       scanf("%d",&i);
       StrList_printAt(strlist,i);
+      printf("\n");
     break;
 
     case 6:
-       printf(StrList_printLen(strlist));
+       printf("%d",StrList_printLen(strlist));
+       printf("\n");
     break;
      
     case 7:
-      char * str;
-      scanf("%s",&str);
-      printf(StrList_count(strlist,str));
+      scanf("%s",str);
+      printf("%d",StrList_count(strlist,str));
+      printf("\n");
     break;
 
     case 8:
-      char * str;
-      scanf("%s",&str);
+      scanf("%s",str);
       StrList_remove(strlist,str);
     break;
 
     case 9:
-      int i;
       scanf("%d",&i);
       StrList_removeAt(strlist,i);
     break;
@@ -79,13 +80,16 @@ int main(){
     break;
 
     case 13:
-      StrList_isSorted(strlist);
+      if(StrList_isSorted(strlist)==1){
+        printf("true");
+      }else{
+        printf("false");
+      }
+      printf("\n");
     break;
 
     default:
       break;
     }
   }
-
-
 }
